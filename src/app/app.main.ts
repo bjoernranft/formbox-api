@@ -22,7 +22,7 @@ export class AppMain {
   startServer(db: Router) {
     this.log.debug('Starte Server.');
 
-    this.app.set('port', 4201);
+    this.app.set('port', process.env.PORT || 4201);
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
 
