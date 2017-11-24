@@ -50,6 +50,7 @@
     "supertest": "^2.0.1",
     "ts-jest": "^21.2.3",
     "tslint": "^5.0.0",
+    "tslint-language-service": "^0.9.6",
     "typescript": "^2.6.1"
   }
 }
