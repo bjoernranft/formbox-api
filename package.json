@@ -1,0 +1,59 @@
+{
+  "name": "formbox-api",
+  "description": "no description",
+  "version": "1.0.0",
+  "license": "EUPL-1.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eymux/formbox-api"
+  },
+  "scripts": {
+    "start": "npm run build && npm run watch",
+    "build": "npm run build-ts && npm run tslint",
+    "serve": "nodemon dist/index.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"blue.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve\"",
+    "test": "jest --forceExit",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "debug": "npm run build && npm run watch-debug",
+    "serve-debug": "nodemon --inspect dist/index.js",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "consign": "^0.1.6",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "injection-js": "^2.2.1",
+    "lodash": "^4.17.4",
+    "passport": "^0.4.0",
+    "reflect-metadata": "^0.1.10",
+    "request": "^2.83.0",
+    "ts-log-debug": "^3.0.1",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/async": "^2.0.40",
+    "@types/body-parser": "^1.16.8",
+    "@types/dotenv": "^4.0.2",
+    "@types/express": "^4.0.39",
+    "@types/jest": "^19.2.2",
+    "@types/lodash": "^4.14.63",
+    "@types/morgan": "^1.7.32",
+    "@types/node": "^7.0.12",
+    "@types/passport": "^0.4.1",
+    "@types/request": "0.0.45",
+    "@types/supertest": "^2.0.0",
+    "concurrently": "^3.4.0",
+    "jest": "^21.2.1",
+    "nodemon": "^1.11.0",
+    "shelljs": "^0.7.7",
+    "supertest": "^2.0.1",
+    "ts-jest": "^21.2.3",
+    "tslint": "^5.0.0",
+    "tslint-language-service": "^0.9.6",
+    "typescript": "^2.6.1"
+  }
+}
