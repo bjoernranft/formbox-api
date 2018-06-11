@@ -4,6 +4,7 @@ import SimpleLDAPSearch from 'simple-ldap-search';
 import { Logger } from 'ts-log-debug';
 import { transform } from 'json-transformer-node';
 import { Filter } from './filter';
+import { fork } from 'ts-process-promises';
 
 /**
  * Schnittstelle für alle LDAP-Anfragen.
@@ -18,6 +19,10 @@ export class LDAPService {
     config: ConfigurationService) {
     this.config = config;
     this.log = log;
+    this.connectLdap();
+  }
+
+  connectLdap(): void {
     const conf = this.config.getLDAP('config');
     conf.dn = process.env.LDAP_DN || conf.dn;
     conf.password = process.env.LDAP_PASSWORD || conf.password;
@@ -25,6 +30,10 @@ export class LDAPService {
     this.ldap.bindDN().then(res => {
       // nothing to do
     }).catch(rej => {
+      fork('../node_modules/ldap-server-mock/server.js', ['--conf=../../config/ldap-server-mock-cfg.json', '--database=../../config/ldap-server-mock-users.json'])
+        .on('process', process => {
+          console.log("LDAP-Mock-Server started: " + process.pid);
+        })
       this.log.debug(rej);
     });
   }

@@ -1,0 +1,7 @@
+[{
+    "dn": "cn=user,dc=password",
+    "cn": "user-login",
+    "givenName": "Test",
+    "sn": "1234",
+    "uid": "1234"
+}]
